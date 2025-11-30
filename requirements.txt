@@ -5,10 +5,10 @@ scikit-learn>=1.0.0
 
 # NLP库
 jieba>=0.42.0
-fasttext>=0.9.2
+# fasttext>=0.9.2
 
 # 深度学习
-torch>=1.10.0
+# torch>=2.6.0
 transformers>=4.20.0
 
 # 可视化
