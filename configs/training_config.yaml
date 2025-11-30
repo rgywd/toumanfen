@@ -1,0 +1,66 @@
+# 训练配置
+
+common:
+  seed: 42
+  device: "cuda"  # cuda 或 cpu
+  num_workers: 4
+  
+baseline:
+  # 随机森林训练配置
+  random_forest:
+    cross_validation: 5
+    verbose: 1
+    
+  # FastText 训练配置
+  fasttext:
+    epoch: 25
+    verbose: 2
+    autotune_duration: 300  # 自动调参时间(秒)
+
+bert:
+  # 训练参数
+  epochs: 5
+  batch_size: 32
+  learning_rate: 2.0e-5
+  weight_decay: 0.01
+  warmup_ratio: 0.1
+  
+  # 优化器
+  optimizer: "AdamW"
+  scheduler: "linear"
+  
+  # 梯度
+  max_grad_norm: 1.0
+  gradient_accumulation_steps: 1
+  
+  # 混合精度训练
+  fp16: true
+  
+  # 早停
+  early_stopping:
+    enabled: true
+    patience: 3
+    min_delta: 0.001
+    monitor: "val_f1"
+    mode: "max"
+  
+  # 检查点
+  checkpoint:
+    save_best_only: true
+    save_total_limit: 3
+    metric_for_best_model: "f1"
+    
+  # 日志
+  logging:
+    logging_steps: 100
+    eval_steps: 500
+    save_steps: 500
+
+evaluation:
+  metrics:
+    - "accuracy"
+    - "precision"
+    - "recall"
+    - "f1"
+  average: "macro"
+  per_class_metrics: true

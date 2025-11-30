@@ -1,0 +1,42 @@
+# 数据配置
+
+paths:
+  raw_data_dir: "data/raw"
+  processed_data_dir: "data/processed"
+  vocabulary_dir: "data/vocabulary"
+  
+  train_file: "train.txt"
+  test_file: "test.txt"
+  dev_file: "dev.txt"
+  class_file: "class.txt"
+  stopwords_file: "stopwords.txt"
+
+preprocessing:
+  # 基线模型预处理配置
+  baseline:
+    remove_stopwords: true
+    remove_punctuation: true
+    min_word_length: 1
+    max_word_length: 50
+    
+  # BERT模型预处理配置
+  bert:
+    remove_stopwords: false
+    max_length: 128
+    truncation: true
+    padding: "max_length"
+
+vocabulary:
+  min_freq: 2
+  max_size: 50000
+  special_tokens:
+    - "[PAD]"
+    - "[UNK]"
+    - "[CLS]"
+    - "[SEP]"
+
+dataset:
+  train_size: 180000
+  test_size: 10000
+  dev_size: 10000
+  num_classes: 10
